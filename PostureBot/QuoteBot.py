@@ -4,7 +4,7 @@ import json
 from discord.ext import commands
 
 # Token for your discord bot here
-TOKEN = 'NzAzNzI1MjIwMjc5NzQ2NzQx.XqSxsg.klZf1fBvAfNoOR6rc_yua3cJ148'
+TOKEN = ''
 
 
 def get_prefix(client, message):
