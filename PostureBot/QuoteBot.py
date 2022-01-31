@@ -3,8 +3,9 @@ import os
 import json
 from discord.ext import commands
 
-# Token for your discord bot here
-TOKEN = ''
+# The Token for your discord bot should be put in a file called Token.txt in the Files folder
+with open('./Files/Token.txt','r') as file:
+  TOKEN = file.readline()
 
 
 def get_prefix(client, message):
@@ -25,7 +26,7 @@ async def on_ready():
 @client.event
 async def on_guild_join(guild):
 
-    #Initialise default prefix here
+    #Initialise default prefix for guild here
     with open('./Files/prefixes.json','r') as file:
         prefixes = json.load(file)
     #Setting new guild to default prefix of '.'
@@ -113,6 +114,7 @@ async def ping(ctx):
 
 
 # Cog commands
+# To use the dev commands: put your discord ID into the Developers.txt file to get your discord ID simply use the bot's '.get_id' command
 
 @client.command(brief='Dev command: loads Cogs for development', description = 'Dev command: loads Cogs for development')
 async def load(ctx, extension):
@@ -144,6 +146,7 @@ async def reload(ctx, extension):
         await ctx.send('You are not permitted to do that')
 
 
+#This line Loads all of the Cogs in the Cog file
 for filename in os.listdir('./Cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'Cogs.{filename[:-3]}')
